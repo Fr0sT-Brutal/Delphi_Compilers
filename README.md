@@ -109,4 +109,4 @@ Please refer to `CompilersDef.inc` for the list of currently defined capabilitie
 WARNING
 -------
 
-RAD Studio's Code Insight ignores all define areas that use `$IF` construction explicitly or implicitly (at least on XE2). This means no autogenerating of methods, Jump to decl/impl, name substitution etc. Really annoying and stupid bug.
+Some features of RAD Studio ignore all define areas that use `$IF` construction explicitly or implicitly (at least on XE2). This means no autogenerating of methods, Jump to decl/impl etc. Really annoying and stupid bug. Code Insight still works though.

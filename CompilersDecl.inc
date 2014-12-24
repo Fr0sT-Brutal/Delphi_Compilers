@@ -2,9 +2,9 @@
   Include file for checking compiler versions and capabilities. Declaration edition
 
                             === WARNING ===
-  RAD Studio's Code Insight ignores all define areas that use `$IF` construction
+  Some features of RAD Studio ignore all define areas that use `$IF` construction
   explicitly or implicitly (at least on XE2). This means no autogenerating of methods,
-  Jump to decl/impl, name substitution etc. Really annoying and stupid bug.
+  Jump to decl/impl etc. Really annoying and stupid bug. Code Insight still works though.
 
   General hints:
     1) Where possible, use capabilities instead of versions checking for greater
