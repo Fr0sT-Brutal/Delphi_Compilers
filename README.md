@@ -55,6 +55,7 @@ Usage
 1) Check for compiler version (avoid where possible)
 
 **Declaration edition**
+
 ```delphi
 {$IF CompilerVersion >= RAD_2005}
   ...
@@ -62,6 +63,7 @@ Usage
 ```
 
 **Define-only edition**
+
 ```delphi
 {$IFDEF RAD_2005_UP}
   ...
@@ -73,23 +75,38 @@ Usage
 2) Check for compiler capability
 
 2.1) Traditional
+
 ```delphi
 {$IFDEF CAPS_REGION}
   {$REGION 'Foo'}
 {$ENDIF}
 ```
+
 Drawback is that you have to remember all names of defines.
 
 2.2) Modern style (only in *Declaration edition*)
+
 ```delphi
 {$IF Cap_Region}
   ...
 {$IFEND}
 ```
+
 Here you can get Code Insight's help to find out the needed capability as it is actually a usual boolean constant.
 (!) Note that constants are named `Cap_*` while defines are named `CAPS_` to avoid ambiguity with FPC as it allows `{$IF %Define_name%}` construction.
 
-Drawbacks
----------
+Sometimes this option is impossible though and you have to use traditional check
+
+```delphi
+  uses {$IFDEF CAPS_NAMESPACES}Winapi.Windows{$ELSE}Windows{$IFEND}, ...
+```
+
+Defined capabilities
+--------------------
+
+Please refer to `CompilersDef.inc` for the list of currently defined capabilities. When using "Modern style" defines you'll get the list of available capabilities with Code Insight.
+
+WARNING
+-------
 
 RAD Studio's Code Insight ignores all define areas that use `$IF` construction explicitly or implicitly (at least on XE2). This means no autogenerating of methods, Jump to decl/impl, name substitution etc. Really annoying and stupid bug.
