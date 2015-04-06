@@ -184,7 +184,6 @@
   {$DEFINE CAPS_EXITPARAM}
 {$IFEND}
 
-// NB: FPC seems to lack support?
 {$IF DEFINED(RAD_2009_UP)} // Supports reference to proc/func (closures)?
   {$DEFINE CAPS_REFERENCE}
 {$IFEND}
@@ -193,13 +192,17 @@
   {$DEFINE CAPS_TOBJECTMETHODS}
 {$IFEND}
 
+{$IF DEFINED(RAD_2009_UP) OR DEFINED(FPC)} // Supports additional text for the deprecated directive?
+  {$DEFINE CAPS_DEPRDETAILS}
+  {$DEFINE SUPPORTS_DEPRECATED_DETAILS} // JVCL compatible
+{$IFEND}
+
 // ~~ RAD_2010 ~~
 
 {$IF DEFINED(RAD_2010_UP) OR DEFINED(FPC)} // Generics working as they should (type PT = ^T)?
   {$DEFINE CAPS_GENERICSOK}
 {$IFEND}
 
-//FPC?
 {$IF DEFINED(RAD_2010_UP)} // Suppors Casting interfaces to objects?
   {$DEFINE CAPS_INTFCAST}
   {$DEFINE SUPPORTS_CAST_INTERFACE_TO_OBJ} // JVCL compatible
@@ -210,7 +213,6 @@
   {$DEFINE SUPPORTS_DELAYED_LOADING} // JVCL compatible
 {$IFEND}
 
-//FPC?
 {$IF DEFINED(RAD_2010_UP)} // Suppors attributes?
   {$DEFINE CAPS_ATTRIBUTES}
 {$IFEND}

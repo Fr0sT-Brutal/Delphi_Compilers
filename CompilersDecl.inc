@@ -126,6 +126,10 @@ const
   Cap_TObjectMethods = True;
 {$ENDIF}
 
+{$IFDEF CAPS_DEPRDETAILS}
+  Cap_DeprDetails = True;
+{$ENDIF}
+
 {$IFDEF CAPS_GENERICSOK}
   Cap_GenericsOK = True;
 {$ENDIF}
