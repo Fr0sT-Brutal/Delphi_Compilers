@@ -203,21 +203,21 @@
   {$DEFINE CAPS_GENERICSOK}
 {$IFEND}
 
-{$IF DEFINED(RAD_2010_UP)} // Suppors Casting interfaces to objects?
+{$IF DEFINED(RAD_2010_UP)} // Supports Casting interfaces to objects?
   {$DEFINE CAPS_INTFCAST}
   {$DEFINE SUPPORTS_CAST_INTERFACE_TO_OBJ} // JVCL compatible
 {$IFEND}
 
-{$IF DEFINED(RAD_2010_UP)} // Suppors delayed loading of an external library?
+{$IF DEFINED(RAD_2010_UP)} // Supports delayed loading of an external library?
   {$DEFINE CAPS_DELAYED}
   {$DEFINE SUPPORTS_DELAYED_LOADING} // JVCL compatible
 {$IFEND}
 
-{$IF DEFINED(RAD_2010_UP)} // Suppors attributes?
+{$IF DEFINED(RAD_2010_UP)} // Supports attributes?
   {$DEFINE CAPS_ATTRIBUTES}
 {$IFEND}
 
-{$IF DEFINED(RAD_2010_UP) OR DEFINED(FPC)} // Suppors class constructors/destructors?
+{$IF DEFINED(RAD_2010_UP) OR DEFINED(FPC)} // Supports class constructors/destructors?
   {$DEFINE CAPS_CLASSCONSTRDESTR}
   {$DEFINE SUPPORTS_CLASS_CTORDTORS} // JVCL compatible
 {$IFEND}
@@ -230,17 +230,17 @@
 
 // ~~ RAD_XE3 ~~
 
-{$IF DEFINED(RAD_XE3_UP)} // Suppors Simple type record helpers?
+{$IF DEFINED(RAD_XE3_UP)} // Supports Simple type record helpers?
   {$DEFINE CAPS_SIMPLEHELPERS}
 {$IFEND}
 
 // ~~ RAD_XE7 ~~
 
-{$IF DEFINED(RAD_XE7_UP)} // Suppors initialization for dynamic arrays?
+{$IF DEFINED(RAD_XE7_UP)} // Supports initialization for dynamic arrays?
   {$DEFINE CAPS_DYNARRAYINIT}
 {$IFEND}
 
-{$IF DEFINED(RAD_XE7_UP)} // Suppors string-like operations on dynamic arrays?
+{$IF DEFINED(RAD_XE7_UP)} // Supports string-like operations on dynamic arrays?
   {$DEFINE CAPS_DYNARRAYOPS}
 {$IFEND}
 
