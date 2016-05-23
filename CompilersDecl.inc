@@ -58,110 +58,56 @@ const
 
 // Declare capability constants to enable {$IF Cap_**} construction
 
-{$IFDEF CAPS_REGION}
-  Cap_Region = True;
-{$ENDIF}
+  Cap_Region = {$IFDEF CAPS_REGION} True {$ELSE} False {$ENDIF};
 
-{$IFDEF CAPS_CLASSPROPS}
-  Cap_ClassProps = True;
-{$ENDIF}
+  Cap_ClassProps = {$IFDEF CAPS_CLASSPROPS} True {$ELSE} False {$ENDIF};
 
-{$IFDEF CAPS_INLINE}
-  Cap_Inline = True;
-{$ENDIF}
+  Cap_Inline = {$IFDEF CAPS_INLINE} True {$ELSE} False {$ENDIF};
 
-{$IFDEF CAPS_CLASSNESTED}
-  Cap_ClassNested = True;
-{$ENDIF}
+  Cap_ClassNested = {$IFDEF CAPS_CLASSNESTED} True {$ELSE} False {$ENDIF};
 
-{$IFDEF CAPS_STRICT}
-  Cap_Strict = True;
-{$ENDIF}
+  Cap_Strict = {$IFDEF CAPS_STRICT} True {$ELSE} False {$ENDIF};
 
-{$IFDEF CAPS_FORIN}
-  Cap_ForIn = True;
-{$ENDIF}
+  Cap_ForIn = {$IFDEF CAPS_FORIN} True {$ELSE} False {$ENDIF};
 
-{$IFDEF CAPS_STATICMEMBERS}
-  Cap_StaticMembers = True;
-{$ENDIF}
+  Cap_StaticMembers = {$IFDEF CAPS_STATICMEMBERS} True {$ELSE} False {$ENDIF};
 
-{$IFDEF CAPS_CLASSMARKS}
-  Cap_ClassMarks = True;
-{$ENDIF}
+  Cap_ClassMarks = {$IFDEF CAPS_CLASSMARKS} True {$ELSE} False {$ENDIF};
 
-{$IFDEF CAPS_METHMARKS}
-  Cap_MethMarks = True;
-{$ENDIF}
+  Cap_MethMarks = {$IFDEF CAPS_METHMARKS} True {$ELSE} False {$ENDIF};
 
-{$IFDEF CAPS_CLASSFIELDS}
-  Cap_ClassFields = True;
-{$ENDIF}
+  Cap_ClassFields = {$IFDEF CAPS_CLASSFIELDS} True {$ELSE} False {$ENDIF};
 
-{$IFDEF CAPS_OPOVERLOAD}
-  Cap_OpOverload = True;
-{$ENDIF}
+  Cap_OpOverload = {$IFDEF CAPS_OPOVERLOAD} True {$ELSE} False {$ENDIF};
 
-{$IFDEF CAPS_CLASSHELPERS}
-  Cap_ClassHelpers = True;
-{$ENDIF}
+  Cap_ClassHelpers = {$IFDEF CAPS_CLASSHELPERS} True {$ELSE} False {$ENDIF};
 
-{$IFDEF CAPS_ENHANCEDRECS}
-  Cap_EnhancedRecs = True;
-{$ENDIF}
+  Cap_EnhancedRecs = {$IFDEF CAPS_ENHANCEDRECS} True {$ELSE} False {$ENDIF};
 
-{$IFDEF CAPS_GENERICS}
-  Cap_Generics = True;
-{$ENDIF}
+  Cap_Generics = {$IFDEF CAPS_GENERICS} True {$ELSE} False {$ENDIF};
 
-{$IFDEF CAPS_EXITPARAM}
-  Cap_ExitParam = True;
-{$ENDIF}
+  Cap_ExitParam = {$IFDEF CAPS_EXITPARAM} True {$ELSE} False {$ENDIF};
 
-{$IFDEF CAPS_REFERENCE}
-  Cap_Reference = True;
-{$ENDIF}
+  Cap_Reference = {$IFDEF CAPS_REFERENCE} True {$ELSE} False {$ENDIF};
 
-{$IFDEF CAPS_TOBJECTMETHODS}
-  Cap_TObjectMethods = True;
-{$ENDIF}
+  Cap_TObjectMethods = {$IFDEF CAPS_TOBJECTMETHODS} True {$ELSE} False {$ENDIF};
 
-{$IFDEF CAPS_DEPRDETAILS}
-  Cap_DeprDetails = True;
-{$ENDIF}
+  Cap_DeprDetails = {$IFDEF CAPS_DEPRDETAILS} True {$ELSE} False {$ENDIF};
 
-{$IFDEF CAPS_GENERICSOK}
-  Cap_GenericsOK = True;
-{$ENDIF}
+  Cap_GenericsOK = {$IFDEF CAPS_GENERICSOK} True {$ELSE} False {$ENDIF};
 
-{$IFDEF CAPS_INTFCAST}
-  Cap_IntfCast = True;
-{$ENDIF}
+  Cap_IntfCast = {$IFDEF CAPS_INTFCAST} True {$ELSE} False {$ENDIF};
 
-{$IFDEF CAPS_DELAYED}
-  Cap_Delayed = True;
-{$ENDIF}
+  Cap_Delayed = {$IFDEF CAPS_DELAYED} True {$ELSE} False {$ENDIF};
 
-{$IFDEF CAPS_ATTRIBUTES}
-  Cap_Attributes = True;
-{$ENDIF}
+  Cap_Attributes = {$IFDEF CAPS_ATTRIBUTES} True {$ELSE} False {$ENDIF};
 
-{$IFDEF CAPS_CLASSCONSTRDESTR}
-  Cap_ClassConstDestr = True;
-{$ENDIF}
+  Cap_ClassConstDestr = {$IFDEF CAPS_CLASSCONSTRDESTR} True {$ELSE} False {$ENDIF};
 
-{$IFDEF CAPS_NATIVEOK}
-  Cap_NativeOK = True;
-{$ENDIF}
+  Cap_NativeOK = {$IFDEF CAPS_NATIVEOK} True {$ELSE} False {$ENDIF};
 
-{$IFDEF CAPS_SIMPLEHELPERS}
-  Cap_SimpleHelpers = True;
-{$ENDIF}
+  Cap_SimpleHelpers = {$IFDEF CAPS_SIMPLEHELPERS} True {$ELSE} False {$ENDIF};
 
-{$IFDEF CAPS_DYNARRAYINIT}
-  Cap_DynArrayInit = True;
-{$ENDIF}
+  Cap_DynArrayInit = {$IFDEF CAPS_DYNARRAYINIT} True {$ELSE} False {$ENDIF};
 
-{$IFDEF CAPS_DYNARRAYOPS}
-  Cap_DynArrayOps = True;
-{$ENDIF}
+  Cap_DynArrayOps = {$IFDEF CAPS_DYNARRAYOPS} True {$ELSE} False {$ENDIF};
