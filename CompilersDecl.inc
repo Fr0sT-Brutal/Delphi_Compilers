@@ -3,7 +3,7 @@
 
                             === WARNING ===
   Some features of RAD Studio ignore all define areas that use `$IF` construction
-  explicitly or implicitly (at least on XE2). This means no autogenerating of methods,
+  explicitly or implicitly (up to Berlin). This means no autogenerating of methods,
   Jump to decl/impl etc. Really annoying and stupid bug. Code Insight still works though.
 
   General hints:
@@ -38,6 +38,9 @@
 // Compiler version constants for checking with $IF directive (Delphi6+)
 // Must be declared for other compilers
 const
+  RAD_Berlin  = 31;
+  RAD_Seattle = 30;
+  RAD_XE8  = 29;
   RAD_XE7  = 28;
   RAD_XE6  = 27;
   RAD_XE5  = 26;
