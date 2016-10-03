@@ -128,6 +128,8 @@
 	
 	// Supports Simple type record helpers?
 	CAPS_SIMPLEHELPERS
+	// Automatic reference counting - new methods, weak / volatile modifiers, etc
+	CAPS_ARC
 	
 	// ~~ RAD_XE7 ~~
 	
@@ -376,6 +378,8 @@
 {$IF DEFINED(RAD_XE3_UP) OR DEFINED(FPC)}
   // Supports Simple type record helpers?
   {$DEFINE CAPS_SIMPLEHELPERS}
+  // Supports ARC?
+  {$DEFINE CAPS_ARC}
 {$IFEND}
 
 // ~~ RAD_XE7 ~~

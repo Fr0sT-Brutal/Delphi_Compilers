@@ -109,6 +109,8 @@ const
 
   Cap_NativeOK = {$IFDEF CAPS_NATIVEOK} True {$ELSE} False {$ENDIF};
 
+  Cap_ARC = {$IFDEF CAPS_ARC} True {$ELSE} False {$ENDIF};
+
   Cap_SimpleHelpers = {$IFDEF CAPS_SIMPLEHELPERS} True {$ELSE} False {$ENDIF};
 
   Cap_DynArrayInit = {$IFDEF CAPS_DYNARRAYINIT} True {$ELSE} False {$ENDIF};
