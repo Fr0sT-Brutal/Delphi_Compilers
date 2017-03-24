@@ -93,11 +93,9 @@
 	
 	// Supports reference to proc/func (closures)?
 	CAPS_REFERENCE
-	
+
 	// ~~ RAD_2010 / FPC ~~
-	
-	// Generics working as they should (type PT = ^T)?
-	CAPS_GENERICSOK
+
 	// Supports class constructors/destructors?
 	CAPS_CLASSCONSTRDESTR
 	SUPPORTS_CLASS_CTORDTORS // JVCL compatible
@@ -112,11 +110,6 @@
 	SUPPORTS_DELAYED_LOADING // JVCL compatible
 	// Supports attributes?
 	CAPS_ATTRIBUTES
-	
-	// ~~ RAD_XE2 / FPC ~~
-	
-	// NativeInt, NativeUint are fixed?
-	CAPS_NATIVEOK
 	
 	// ~~ RAD_XE2 ~~
 	
@@ -138,9 +131,27 @@
 	
 	// Supports string-like operations on dynamic arrays?
 	CAPS_DYNARRAYOPS
-	
+
+========== Bugs ==========
+
+	// ~~ RAD_2010 / FPC ~~
+
+	// Generics working as they should (type PT = ^T)?
+	CAPS_GENERICSOK
+
+	// ~~ RAD_XE2 / FPC ~~
+
+	// NativeInt, NativeUInt are fixed?
+	CAPS_NATIVEOK
+
+	// ~~ RAD_10 / FPC ~~
+
+	// Class constructor won't be called if class/variable is declared/instantiated in DPR file
+	// (compiler bug up to XE8)
+	CAPS_CLASSCONSTROK
+
 ========== RTL ==========
-	
+
 	// ~~ RAD_2005 ~~
 	
 	HAS_UNIT_HTTPPROD // JVCL compatible
@@ -197,8 +208,8 @@
 {$IFDEF DCC} // Delphi/RAD
 
 { Compiler version constants matching:
-  RAD_Berlin  = 31;
-  RAD_Seattle = 30;
+  RAD_Berlin  = RAD_10_2 = 31;
+  RAD_Seattle = RAD_10 = 30;
   RAD_XE8  = 29;
   RAD_XE7  = 28;
   RAD_XE6  = 27;
@@ -255,9 +266,11 @@
     {$DEFINE RAD_XE8_UP}
   {$IFEND}
   {$IF CompilerVersion >= 30}
+    {$DEFINE RAD_10_UP}
     {$DEFINE RAD_SEATTLE_UP}
   {$IFEND}
   {$IF CompilerVersion >= 31}
+    {$DEFINE RAD_10_2_UP}
     {$DEFINE RAD_BERLIN_UP}
   {$IFEND}
 {$ENDIF}
@@ -342,8 +355,6 @@
 // ~~ RAD_2010 ~~
 
 {$IF DEFINED(RAD_2010_UP) OR DEFINED(FPC)}
-  // Generics working as they should (type PT = ^T)?
-  {$DEFINE CAPS_GENERICSOK}
   // Supports class constructors/destructors?
   {$DEFINE CAPS_CLASSCONSTRDESTR}
   {$DEFINE SUPPORTS_CLASS_CTORDTORS} // JVCL compatible
@@ -361,11 +372,6 @@
 {$IFEND}
 
 // ~~ RAD_XE2 ~~
-
-{$IF DEFINED(RAD_XE2_UP) OR DEFINED(FPC)}
-  // NativeInt, NativeUint are fixed?
-  {$DEFINE CAPS_NATIVEOK}
-{$IFEND}
 
 {$IF DEFINED(RAD_XE2_UP)}
   // Has scoped RTL/VCL units?
@@ -394,8 +400,31 @@
   {$DEFINE CAPS_DYNARRAYOPS}
 {$IFEND}
 
+// Compiler bugs
 
-// *** Other features (RTL, units, etc) *** \\
+// ~~ RAD_2010 ~~
+
+{$IF DEFINED(RAD_2010_UP) OR DEFINED(FPC)}
+  // Generics working as they should (type PT = ^T)?
+  {$DEFINE CAPS_GENERICSOK}
+{$IFEND}
+
+// ~~ RAD_XE2 ~~
+
+{$IF DEFINED(RAD_XE2_UP) OR DEFINED(FPC)}
+  // NativeInt, NativeUInt are fixed?
+  {$DEFINE CAPS_NATIVEOK}
+{$IFEND}
+
+// ~~ RAD_10 ~~
+
+{$IF DEFINED(RAD_10_UP) OR DEFINED(FPC)}
+  // Class constructor won't be called if class/variable is declared/instantiated in DPR file
+  // (compiler bug up to XE8)
+  {$DEFINE CAPS_CLASSCONSTROK}
+{$IFEND}
+
+// *** Other (RTL, units, etc) *** \\
 
 // ~~ RAD_2005 ~~
 
