@@ -38,7 +38,9 @@
 // Compiler version constants for checking with $IF directive (Delphi6+)
 // Must be declared for other compilers
 const
-  RAD_Berlin  = 31; RAD_10_2 = 31;
+  RAD_Rio     = 32; RAD_10_3 = 33;
+  RAD_Tokyo   = 32; RAD_10_2 = 32;
+  RAD_Berlin  = 31; RAD_10_1 = 31;
   RAD_Seattle = 30; RAD_10 = 30;
   RAD_XE8  = 29;
   RAD_XE7  = 28;

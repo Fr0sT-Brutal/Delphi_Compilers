@@ -1,9 +1,10 @@
 (*******************************************************************************
   Include file for checking compiler versions and capabilities. Define-only edition
+  Compatibility: Delphi 7+, FPC
 
                             === WARNING ===
   Some features of RAD Studio ignore all define areas that use `$IF` construction
-  explicitly or implicitly (at least on XE2). This means no autogenerating of methods,
+  explicitly or implicitly (still up to XE10). This means no autogenerating of methods,
   Jump to decl/impl etc. Really annoying and stupid bug. Code Insight still works though.
 
   General hints:
@@ -29,6 +30,11 @@
       {$IFDEF CAPS_REGION}
         {$REGION 'Foo'}
       {$ENDIF}
+
+========== COMPILER ==========
+
+    DCC for Delphi's up to XE2 (this built-on define was introduced in XE2)
+    RAD_XX_UP - compiler version from XX and later
 
 ========== CAPABILITIES ==========
 	// ~~ RAD_2005 / FPC ~~
@@ -205,9 +211,18 @@
 // References:
 // http://docwiki.embarcadero.com/RADStudio/Berlin/en/Compiler_Versions
 
+// Define DCC if not defined yet (Delphi up to XE2)
+{$IFNDEF DCC}
+  {$IF DECLARED(CompilerVersion)}
+    {$DEFINE DCC}
+  {$IFEND}
+{$ENDIF}
+
 {$IFDEF DCC} // Delphi/RAD
 
 { Compiler version constants matching:
+  RAD_Rio     = RAD_10_3 = 33;
+  RAD_Tokyo   = RAD_10_2 = 32;
   RAD_Berlin  = RAD_10_2 = 31;
   RAD_Seattle = RAD_10 = 30;
   RAD_XE8  = 29;
@@ -270,8 +285,16 @@
     {$DEFINE RAD_SEATTLE_UP}
   {$IFEND}
   {$IF CompilerVersion >= 31}
-    {$DEFINE RAD_10_2_UP}
+    {$DEFINE RAD_10_1_UP}
     {$DEFINE RAD_BERLIN_UP}
+  {$IFEND}
+  {$IF CompilerVersion >= 32}
+    {$DEFINE RAD_10_2_UP}
+    {$DEFINE RAD_TOKYO_UP}
+  {$IFEND}
+  {$IF CompilerVersion >= 33}
+    {$DEFINE RAD_10_3_UP}
+    {$DEFINE RAD_RIO_UP}
   {$IFEND}
 {$ENDIF}
 
