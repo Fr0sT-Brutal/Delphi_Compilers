@@ -7,12 +7,15 @@ interface
 uses SysUtils;
 
 const
+  // FPC misses / DCC Windows NO_ERROR
+  NO_ERROR = 0;
+
   // FPC feInvalidHandle / DCC INVALID_HANDLE_VALUE
   {$IF NOT DECLARED(feInvalidHandle)}
   feInvalidHandle = INVALID_HANDLE_VALUE;
   {$IFEND}
   {$IF NOT DECLARED(INVALID_HANDLE_VALUE)}
-  INVALID_HANDLE_VALUE = THandle(-1); // feInvalidHandle is typed const...
+  INVALID_HANDLE_VALUE = feInvalidHandle; // feInvalidHandle is typed const...
   {$IFEND}
 
   // FPC fsFrom* (DCC misses)
