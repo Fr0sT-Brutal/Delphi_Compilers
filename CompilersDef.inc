@@ -1,5 +1,6 @@
 (*******************************************************************************
-  Include file for checking compiler versions and capabilities. Define-only edition
+  Include file for checking compiler versions and capabilities.
+  Define-only edition
   Compatibility: Delphi 7+, FPC
 
                             === WARNING ===
@@ -8,17 +9,17 @@
   Jump to decl/impl etc. Really annoying and stupid bug. Code Insight still works though.
 
   General hints:
-    1) Where possible, use capabilities instead of versions checking for greater
+    1) Where possible, use capabilities instead of version checking for greater
        clearness and portability.
     2) Check existense of required types/constants/vars by {$IF DECLARED()}.
 
                       ### Define-only edition ###
   Contains only compiler defines, thus supports including into any part of a unit,
   even before the unit name line!
-  Under RAD Studio contains compiler version defines named like RAD_%VER%_UP
-  where %VER% is RAD Studio version (2005-2010, XE, XE2-8...). These defines
-  are identical to frequently used COMPILER_##_UP ones.
-  Regarding FPC/Lazarus, always their latest release version is considered (no older versions)
+  Under RAD Studio contains compiler version defines named like `RAD_%VER%_UP`
+  where `%VER%` is RAD Studio version (2005-2010, XE, XE2-8...). These defines
+  are identical to frequently used `COMPILER_##_UP` ones.
+  For FPC/Lazarus, always their latest release version is considered (no older versions)
 
   Usage:
     1) Check for compiler version (avoid where possible)
@@ -31,185 +32,45 @@
         {$REGION 'Foo'}
       {$ENDIF}
 
-========== COMPILER ==========
+  ===== Added defines =====
 
-    DCC for Delphi's up to XE2 (this built-on define was introduced in XE2)
-    RAD_XX_UP - compiler version from XX and later
+  1. Compiler versions
 
-========== CAPABILITIES ==========
-	// ~~ RAD_2005 / FPC ~~
-	
-	// Supports REGION?
-	CAPS_REGION
-	SUPPORTS_REGION // JVCL compatible
-	// Supports class properties?
-	CAPS_CLASSPROPS
-	// Supports Inline?
-	CAPS_INLINE
-	SUPPORTS_INLINE // JVCL compatible
-	// Supports class nested const/types?
-	CAPS_CLASSNESTED
-	SUPPORTS_NESTED_CONSTANTS // JVCL compatible
-	SUPPORTS_NESTED_TYPES     // JVCL compatible
-	// Supports strict?
-	CAPS_STRICT
-	SUPPORTS_STRICT // JVCL compatible
-	// Supports for-in?
-	CAPS_FORIN
-	SUPPORTS_FOR_IN // JVCL compatible
-	
-	// ~~ RAD_2006 / FPC ~~
-	
-	// Supports final class methods?
-	CAPS_METHFINAL
-	SUPPORTS_FINAL  // JVCL compatible
-	// NB: FPC supports this only if $STATIC ON defined
-	// Supports static class methods?
-	CAPS_METHSTATIC
-	SUPPORTS_STATIC // JVCL compatible
-	// Supports abstract and sealed class marks?
-	CAPS_CLASSMARKS
-	// Supports class fields?
-	CAPS_CLASSFIELDS
-	SUPPORTS_CLASS_FIELDS // JVCL compatible
-	// Supports operator overloading?
-	// NB: FPC uses different syntax
-	CAPS_OPOVERLOAD
-	// Supports class helpers?
-	CAPS_CLASSHELPERS
-	SUPPORTS_CLASS_HELPERS
-	// NB: FPC supports only if {$mode objfpc/delphi and {$modeswitch advancedrecords defined
-	// Supports enhanced class-like record abilities (methods, props, access level)?
-	CAPS_ENHANCEDRECS
-	SUPPORTS_ENHANCED_RECORDS // JVCL compatible
-	
-	// ~~ RAD_2009 / FPC ~~
-	
-	// NB: FPC uses different syntax unless Mode Delphi is defined
-	// Supports Generics?
-	CAPS_GENERICS
-	SUPPORTS_GENERICS // JVCL compatible
-	// Supports Exit(param)?
-	CAPS_EXITPARAM
-	// Supports additional text for the deprecated directive?
-	CAPS_DEPRDETAILS
-	SUPPORTS_DEPRECATED_DETAILS // JVCL compatible
-	
-	// ~~ RAD_2009 ~~
-	
-	// Supports reference to proc/func (closures)?
-	CAPS_REFERENCE
+    - `DCC` for Delphi's up to XE2 (this built-in define was introduced in XE2)
+    - `RAD_XX_UP` for Delphi's - compiler version from XX and later
 
-	// ~~ RAD_2010 / FPC ~~
+  2. Compiler capabilities
 
-	// Supports class constructors/destructors?
-	CAPS_CLASSCONSTRDESTR
-	SUPPORTS_CLASS_CTORDTORS // JVCL compatible
-	// Supports Casting interfaces to objects?
-	CAPS_INTFCAST
-	SUPPORTS_CAST_INTERFACE_TO_OBJ // JVCL compatible
-	
-	// ~~ RAD_2010 ~~
-	
-	// Supports delayed loading of an external library?
-	CAPS_DELAYED
-	SUPPORTS_DELAYED_LOADING // JVCL compatible
-	// Supports attributes?
-	CAPS_ATTRIBUTES
-	
-	// ~~ RAD_XE2 ~~
-	
-	// Has scoped RTL/VCL units?
-	CAPS_UNITSCOPE
-	HAS_UNITSCOPE // JVCL compatible
-	
-	// ~~ RAD_XE3 / FPC ~~
-	
-	// Supports Simple type record helpers?
-	CAPS_SIMPLEHELPERS
-	// Automatic reference counting - new methods, weak / volatile modifiers, etc
-	CAPS_ARC
-	
-	// ~~ RAD_XE7 ~~
-	
-	// Supports initialization for dynamic arrays?
-	CAPS_DYNARRAYINIT
-	
-	// Supports string-like operations on dynamic arrays?
-	CAPS_DYNARRAYOPS
+    Two sets of defines:
+      - Internal ones, always named as `CAPS_XXX`
+      - JVCL-compatible ones, named as `SUPPORTS_XXX`
 
-========== Bugs ==========
+  3. Compiler bugs
 
-	// ~~ RAD_2010 / FPC ~~
+    Features that work as they should only starting from some version.
+    Defines are named as `CAPS_XXX` as it's compiler capability too
 
-	// Generics working as they should (type PT = ^T)?
-	CAPS_GENERICSOK
+  4. RTL (Units, class fields etc)
 
-	// ~~ RAD_XE2 / FPC ~~
+    - New unit defines, named as `HAS_UNIT_XXX`. Most of them are JVCL-compatible.
+      `XXX` contains fully scoped unit name, like System.Net.HttpClient =>
+      `SYSTEM_NET_HTTPCLIENT`
+    - New field defines, named as `HAS_XXX_YYY` where `XXX` is class/record name
+      and `YYY` is field name
+    - JVCL-compatible new field defines, named in free form
+    - Other defines named in a free form
 
-	// NativeInt, NativeUInt are fixed?
-	CAPS_NATIVEOK
-
-	// ~~ RAD_10 / FPC ~~
-
-	// Class constructor won't be called if class/variable is declared/instantiated in DPR file
-	// (compiler bug up to XE8)
-	CAPS_CLASSCONSTROK
-
-========== RTL ==========
-
-	// ~~ RAD_2005 ~~
-	
-	HAS_UNIT_HTTPPROD // JVCL compatible
-	
-	// ~~ RAD_2007 ~~
-	
-	HAS_UNIT_GIFIMG // JVCL compatible
-	
-	// ~~ RAD_2009 / FPC ~~
-	
-	HAS_UNIT_CHARACTER // JVCL compatible
-	
-	// ~~ RAD_2009 ~~
-	HAS_UNIT_ANSISTRINGS      // JVCL compatible
-	HAS_UNIT_PNGIMAGE         // JVCL compatible
-	// Exception class has the StackTrace propery; JVCL compatible
-	HAS_EXCEPTION_STACKTRACE
-	// TObject has new methods (Equals, GetHashCode, ToString)
-	HAS_TOBJECT_METHODS
-	
-	// ~~ RAD_XE ~~
-	
-	HAS_UNIT_REGEX
-	HAS_UNIT_REGULAREXPRESSIONSAPI // JVCL compatible
-	// TFormatSettings has constructor Create
-	HAS_TFMTSETT_CREATE
-	
-	// ~~ RAD_XE2 ~~
-	
-	HAS_UNIT_SYSTEM_UITYPES    // JVCL compatible
-	HAS_UNIT_VCL_THEMES        // JVCL compatible
-	// Has scoped RTL/VCL units; JVCL compatible
-	HAS_UNITSCOPE
-	// since XE2 TList is is TPointerList not PPointerList
-	TLIST_ISNOT_PPOINTERLIST
-	
-	// ~~ RAD_XE3 ~~
-	
-	HAS_UNIT_SYSTEM_ACTIONS    // JVCL compatible
-	// TControl has a StyleElements property; JVCL compatible
-	HAS_PROPERTY_STYLEELEMENTS
-	
-	// ~~ RAD_XE4 ~~
-	
-	// Ansi* routines deprecated and moved to AnsiStrings unit
-	DEPRECATED_SYSUTILS_ANSISTRINGS // JVCL compatible
+  References:
+    http://edn.embarcadero.com/article/34324
+    https://www.embarcadero.com/docs/rad-studio-feature-matrix.pdf
+    http://www.tindex.net/Language/ (unavailable - see it in WebArchive)
+    FPC: https://www.freepascal.org/docs-html/prog/prog.html
 
 *******************************************************************************)
 
 // *** Compiler versions (Delphi/RAD only) *** \\
-// References:
-// http://docwiki.embarcadero.com/RADStudio/Berlin/en/Compiler_Versions
+// Reference:
+// https://docwiki.embarcadero.com/RADStudio/Sydney/en/Compiler_Versions
 
 // Define DCC if not defined yet (Delphi up to XE2)
 {$IFNDEF DCC}
@@ -221,6 +82,7 @@
 {$IFDEF DCC} // Delphi/RAD
 
 { Compiler version constants matching:
+  RAD_Sydney  = RAD_10_4 = 34;
   RAD_Rio     = RAD_10_3 = 33;
   RAD_Tokyo   = RAD_10_2 = 32;
   RAD_Berlin  = RAD_10_2 = 31;
@@ -296,15 +158,13 @@
     {$DEFINE RAD_10_3_UP}
     {$DEFINE RAD_RIO_UP}
   {$IFEND}
+  {$IF CompilerVersion >= 34}
+    {$DEFINE RAD_10_4_UP}
+    {$DEFINE RAD_SYDNEY_UP}
+  {$IFEND}
 {$ENDIF}
 
 // *** Compiler capabilities *** \\
-
-// References:
-// http://edn.embarcadero.com/article/34324
-// http://www.embarcadero.com/ru/products/delphi/delphi-feature-matrix
-// http://www.tindex.net/Language/ (!)
-// FPC: http://www.freepascal.org/docs-html/prog/prog.html
 
 // ~~ RAD_2005 ~~
 
@@ -394,14 +254,6 @@
   {$DEFINE CAPS_ATTRIBUTES}
 {$IFEND}
 
-// ~~ RAD_XE2 ~~
-
-{$IF DEFINED(RAD_XE2_UP)}
-  // Has scoped RTL/VCL units?
-  {$DEFINE CAPS_UNITSCOPE}
-  {$DEFINE HAS_UNITSCOPE} // JVCL compatible
-{$IFEND}
-
 // ~~ RAD_XE3 ~~
 
 {$IF DEFINED(RAD_XE3_UP) OR DEFINED(FPC)}
@@ -413,7 +265,7 @@
 
 // ~~ RAD_XE7 ~~
 
-{$IF DEFINED(RAD_XE7_UP)}
+{$IF DEFINED(RAD_XE7_UP) OR DEFINED(FPC)}
   // Supports initialization for dynamic arrays?
   {$DEFINE CAPS_DYNARRAYINIT}
 {$IFEND}
@@ -421,6 +273,20 @@
 {$IF DEFINED(RAD_XE7_UP)}
   // Supports string-like operations on dynamic arrays?
   {$DEFINE CAPS_DYNARRAYOPS}
+{$IFEND}
+
+// ~~ RAD_10_3 ~~
+
+{$IF DEFINED(RAD_10_3_UP)}
+	// Supports Inline Variable Declaration?
+  {$DEFINE CAPS_INLINEVARS}
+{$IFEND}
+
+// ~~ RAD_10_4 ~~
+
+{$IF DEFINED(RAD_10_4_UP)}
+	// Supports Custom Managed Records?
+  {$DEFINE CAPS_MANAGEDRECS}
 {$IFEND}
 
 // Compiler bugs
@@ -488,10 +354,10 @@
 // ~~ RAD_XE2 ~~
 
 {$IF DEFINED(RAD_XE2_UP)}
+  // Has scoped RTL/VCL units?
+  {$DEFINE HAS_UNITSCOPE}              // JVCL compatible
   {$DEFINE HAS_UNIT_SYSTEM_UITYPES}    // JVCL compatible
   {$DEFINE HAS_UNIT_VCL_THEMES}        // JVCL compatible
-  // Has scoped RTL/VCL units; JVCL compatible
-  {$DEFINE HAS_UNITSCOPE}
   // since XE2 TList is is TPointerList not PPointerList
   {$DEFINE TLIST_ISNOT_PPOINTERLIST}
 {$IFEND}
@@ -509,4 +375,25 @@
 {$IF DEFINED(RAD_XE4_UP)}
   // Ansi* routines deprecated and moved to AnsiStrings unit
   {$DEFINE DEPRECATED_SYSUTILS_ANSISTRINGS} // JVCL compatible
+{$IFEND}
+
+// ~~ RAD_XE7 ~~
+
+{$IF DEFINED(RAD_XE7_UP)}
+  // Parallel Programming library in System.Threading unit
+  {$DEFINE HAS_UNIT_SYSTEM_THREADING}
+  // All net encodings in unit System.NetEncoding
+  {$DEFINE HAS_UNIT_SYSTEM_NETENCODING}
+  // TControl has Size and PlatformDefault properties
+  {$DEFINE HAS_TCONTROL_SIZE}
+  {$DEFINE HAS_TCONTROL_PLATFORMDEFAULT}
+{$IFEND}
+
+// ~~ RAD_XE8 ~~
+
+{$IF DEFINED(RAD_XE8_UP)}
+  // HTTP client in System.Net.HttpClient unit
+  {$DEFINE HAS_UNIT_SYSTEM_NET_HTTPCLIENT}
+  // Hashes in System.Hash unit
+  {$DEFINE HAS_UNIT_SYSTEM_HASH}
 {$IFEND}

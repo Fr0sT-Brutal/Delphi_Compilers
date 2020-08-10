@@ -38,7 +38,8 @@
 // Compiler version constants for checking with $IF directive (Delphi6+)
 // Must be declared for other compilers
 const
-  RAD_Rio     = 32; RAD_10_3 = 33;
+  RAD_Sydney  = 34; RAD_10_4 = 34;
+  RAD_Rio     = 33; RAD_10_3 = 33;
   RAD_Tokyo   = 32; RAD_10_2 = 32;
   RAD_Berlin  = 31; RAD_10_1 = 31;
   RAD_Seattle = 30; RAD_10 = 30;
@@ -118,3 +119,7 @@ const
   Cap_DynArrayInit = {$IFDEF CAPS_DYNARRAYINIT} True {$ELSE} False {$ENDIF};
 
   Cap_DynArrayOps = {$IFDEF CAPS_DYNARRAYOPS} True {$ELSE} False {$ENDIF};
+
+  Cap_InlineVars = {$IFDEF CAPS_INLINEVARS} True {$ELSE} False {$ENDIF};
+
+  Cap_ManagedRecs = {$IFDEF CAPS_MANAGEDRECS} True {$ELSE} False {$ENDIF};
