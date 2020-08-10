@@ -15,7 +15,7 @@ const
   feInvalidHandle = INVALID_HANDLE_VALUE;
   {$IFEND}
   {$IF NOT DECLARED(INVALID_HANDLE_VALUE)}
-  INVALID_HANDLE_VALUE = feInvalidHandle; // feInvalidHandle is typed const...
+  INVALID_HANDLE_VALUE = feInvalidHandle;
   {$IFEND}
 
   // FPC fsFrom* (DCC misses)
