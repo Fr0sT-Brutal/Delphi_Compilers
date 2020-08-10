@@ -25,30 +25,30 @@ General hints
 
   **DON'T**:
   ```delphi
-  function Foo; {IF CompilerVersion >= RAD_2005}inline;{$IFEND}
+  function Foo; {$IF CompilerVersion >= RAD_2005}inline;{$IFEND}
   ```
   
   **DO**:
   ```delphi
-  function Foo; {IFDEF CAPS_INLINE}inline;{$IFEND}
+  function Foo; {$IFDEF CAPS_INLINE}inline;{$IFEND}
   ```
 
 - Check existense of types/constants/vars by {$IF DECLARED()}.
 
   **DON'T**:
   ```delphi
-  var s: {IFDEF UNICODE}UnicodeString{$ELSE}WideString{$IFEND};
+  var s: {$IFDEF UNICODE}UnicodeString{$ELSE}WideString{$IFEND};
   ```
   
   **DO**:
   ```delphi
-  var s: {IF DECLARED(UnicodeString)}UnicodeString{$ELSE}WideString{$IFEND};
+  var s: {$IF DECLARED(UnicodeString)}UnicodeString{$ELSE}WideString{$IFEND};
   ```
 
   :exclamation: Be careful with declaration and implementation sections! If you declare something in declaration section, `$IF DECLARED` will always be true. Use additional define for this case.
 
   ```delphi
-  {IF NOT DECLARED(IsNumber)}
+  {$IF NOT DECLARED(IsNumber)}
     {$DEFINE NO_IsNumber}
     function IsNumber(C: Char): Boolean;
   {$IFEND};
@@ -62,6 +62,23 @@ General hints
   end;
   {$ENDIF}
   ```
+
+- Minimize usage of `$IF` checks as much as possible.
+
+  **DON'T**:
+  ```delphi
+  var i: {$IFDEF CPUX64}Int64{$ENDIF} {$IFDEF CPUX32}Int32{$ENDIF};
+  function Foo: {$IFDEF CPUX64}Int64{$ENDIF} {$IFDEF CPUX32}Int32{$ENDIF};
+  ```
+  
+  **DO** (imagine we don't have `NativeInt`):
+  ```delphi
+  type CPUInt = {$IFDEF CPUX64}Int64{$ENDIF} {$IFDEF CPUX32}Int32{$ENDIF};
+  var i: CPUInt;
+  function Foo: CPUInt;
+  ```
+  
+  :exclamation: A bad practice is very frequent in CPU bitness check (`{$IFDEF CPUX64} ...x64... {$ELSE} ...x32? We hope so... {$ENDIF}`). Usually code asserts no other bitness exists besides 64 and 32. This is NOT true (FPC is able to build for 16-bit CPUs and probably someday there will appear 128-bit CPUs). So we use straight conditions for known bitnesses; unsupported ones will generate compiler error.
 
 Editions
 --------
@@ -125,8 +142,8 @@ Usage
      Sometimes this option is impossible though and you have to use traditional check
      
      ```delphi
-       uses {$IFDEF HAS_UNITSCOPE}Winapi.Windows{$ELSE}Windows{$IFEND}, ...
-    ```
+     uses {$IFDEF HAS_UNITSCOPE}Winapi.Windows{$ELSE}Windows{$IFEND}, ...
+     ```
 
 Defined capabilities
 --------------------
