@@ -67,18 +67,20 @@ General hints
 
   **DON'T**:
   ```delphi
-  var i: {$IFDEF CPUX64}Int64{$ENDIF} {$IFDEF CPUX32}Int32{$ENDIF};
-  function Foo: {$IFDEF CPUX64}Int64{$ENDIF} {$IFDEF CPUX32}Int32{$ENDIF};
+  var i: {$IFDEF CPU64}Int64{$ENDIF} {$IFDEF CPU32}Int32{$ENDIF};
+  function Foo: {$IFDEF CPU64}Int64{$ENDIF} {$IFDEF CPU32}Int32{$ENDIF};
   ```
   
   **DO** (imagine we don't have `NativeInt`):
   ```delphi
-  type CPUInt = {$IFDEF CPUX64}Int64{$ENDIF} {$IFDEF CPUX32}Int32{$ENDIF};
+  type CPUInt = {$IFDEF CPU64}Int64{$ENDIF} {$IFDEF CPU32}Int32{$ENDIF};
   var i: CPUInt;
   function Foo: CPUInt;
   ```
   
-  :exclamation: A bad practice is very frequent in CPU bitness check (`{$IFDEF CPUX64} ...x64... {$ELSE} ...x32? We hope so... {$ENDIF}`). Usually code asserts no other bitness exists besides 64 and 32. This is NOT true (FPC is able to build for 16-bit CPUs and probably someday there will appear 128-bit CPUs). So we use straight conditions for known bitnesses; unsupported ones will generate compiler error.
+  :information_source: `CPU32`/`CPU64` are FPC-style defines determining just the bitness of a CPU. Delphi analogs are `CPU32BITS`/`CPU64BITS`. `CPU32`/`CPU64` for Delphi are defined in `XPlatformCompat.inc` file.
+  
+  :exclamation: A bad practice is very frequent in CPU bitness check (`{$IFDEF CPU64} ...x64... {$ELSE} ...x32? We hope so... {$ENDIF}`). Usually code asserts no other bitness exists besides 64 and 32. This is NOT true (FPC is able to build for 16-bit CPUs and probably someday there will appear 128-bit CPUs). So we use straight conditions for known bitnesses; unsupported ones will generate compiler error.
 
 Editions
 --------
@@ -114,7 +116,7 @@ Usage
   {$IFEND}
   ```
   
-  *Note*. Version constants are actual for Delphi/RAD only. It is supposed that FPC users use fresh version so there's no need in checking the capabilities of its older versions.
+  :information_source: **Note**. Version constants are actual for Delphi/RAD only. It is supposed that FPC users use fresh version so there's no need in checking the capabilities of its older versions.
 
 2. Check for compiler capability
    1. Traditional
@@ -150,7 +152,7 @@ Defined capabilities
 
 Please refer to `CompilersDef.inc` for the list of currently defined capabilities. When using "Modern style" defines you'll get the list of available capabilities with Code Insight.
 
-If you find something to add, feel free to suggest it. But note only those defines will be added that couldn't be determined via `$IF` clauses.
+If you find something to add, feel free to suggest it (please check [CONTRIBUTING.md](CONTRIBUTING.md) first). But note only those defines will be added that couldn't be determined via `$IF` clauses.
 
 WARNING
 -------
