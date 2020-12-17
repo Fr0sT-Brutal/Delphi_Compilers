@@ -387,6 +387,8 @@
   // TControl has Size and PlatformDefault properties
   {$DEFINE HAS_TCONTROL_SIZE}
   {$DEFINE HAS_TCONTROL_PLATFORMDEFAULT}
+  // TTypeKind declared in System so no need to use TypInfo
+  {$DEFINE HAS_TTYPEKIND_IN_SYSTEM}
 {$IFEND}
 
 // ~~ RAD_XE8 ~~
