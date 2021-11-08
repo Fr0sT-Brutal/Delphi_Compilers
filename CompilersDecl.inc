@@ -38,6 +38,7 @@
 // Compiler version constants for checking with $IF directive (Delphi6+)
 // Must be declared for other compilers
 const
+  RAD_Alxdria = 35; RAD_11 = 35;
   RAD_Sydney  = 34; RAD_10_4 = 34;
   RAD_Rio     = 33; RAD_10_3 = 33;
   RAD_Tokyo   = 32; RAD_10_2 = 32;

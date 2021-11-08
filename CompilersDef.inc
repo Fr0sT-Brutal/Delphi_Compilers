@@ -82,6 +82,7 @@
 {$IFDEF DCC} // Delphi/RAD
 
 { Compiler version constants matching:
+  RAD_Alxdria = RAD_11 = 35;
   RAD_Sydney  = RAD_10_4 = 34;
   RAD_Rio     = RAD_10_3 = 33;
   RAD_Tokyo   = RAD_10_2 = 32;
@@ -161,6 +162,10 @@
   {$IF CompilerVersion >= 34}
     {$DEFINE RAD_10_4_UP}
     {$DEFINE RAD_SYDNEY_UP}
+  {$IFEND}
+  {$IF CompilerVersion >= 35}
+    {$DEFINE RAD_11}
+    {$DEFINE RAD_ALXDRIA_UP}
   {$IFEND}
 {$ENDIF}
 
