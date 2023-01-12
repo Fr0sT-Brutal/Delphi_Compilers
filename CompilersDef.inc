@@ -64,6 +64,7 @@
     http://edn.embarcadero.com/article/34324
     https://www.embarcadero.com/docs/rad-studio-feature-matrix.pdf
     http://www.tindex.net/Language/ (unavailable - see it in WebArchive)
+    https://stackoverflow.com/questions/8460037/list-of-delphi-language-features-and-version-in-which-they-were-introduced-depre/8460108#8460108
     FPC: https://www.freepascal.org/docs-html/prog/prog.html
 
 *******************************************************************************)
@@ -164,7 +165,7 @@
     {$DEFINE RAD_SYDNEY_UP}
   {$IFEND}
   {$IF CompilerVersion >= 35}
-    {$DEFINE RAD_11}
+    {$DEFINE RAD_11_UP}
     {$DEFINE RAD_ALXDRIA_UP}
   {$IFEND}
 {$ENDIF}
@@ -292,6 +293,15 @@
 {$IF DEFINED(RAD_10_4_UP)}
 	// Supports Custom Managed Records?
   {$DEFINE CAPS_MANAGEDRECS}
+{$IFEND}
+
+// ~~ RAD_11 ~~
+
+{$IF DEFINED(RAD_11_UP)}
+	// Supports Binary Literals and Digit Separators?
+  {$DEFINE CAPS_BINLITERALS_DIGITSEPS}
+	// Supports inline assembler's AVX instructions (AVX-512)?
+  {$DEFINE CAPS_ASM_AVX}
 {$IFEND}
 
 // Compiler bugs

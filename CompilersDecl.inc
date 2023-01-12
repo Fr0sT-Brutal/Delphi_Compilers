@@ -124,3 +124,7 @@ const
   Cap_InlineVars = {$IFDEF CAPS_INLINEVARS} True {$ELSE} False {$ENDIF};
 
   Cap_ManagedRecs = {$IFDEF CAPS_MANAGEDRECS} True {$ELSE} False {$ENDIF};
+
+  Cap_BinLiterals_DigitSeps = {$IFDEF CAPS_BINLITERALS_DIGITSEPS} True {$ELSE} False {$ENDIF};
+
+  Cap_AsmAVX = {$IFDEF CAPS_ASM_AVX} True {$ELSE} False {$ENDIF};
